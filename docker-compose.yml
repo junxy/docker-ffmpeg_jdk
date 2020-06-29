@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  ffmpeg-node:
+    image: junxy/ffmpeg_jdk:tagname
+    container_name: ffmpeg-node
+    # build: .
+    # restart: always
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '0.80'
+    ports: 
+      - 8080:8080
+    volumes: 
+      - ./jars:/work
+    # entrypoint: java -jar xxx.jar
+    command: -Xmx512M -jar xxx.jar --spring.profiles.active=dev
